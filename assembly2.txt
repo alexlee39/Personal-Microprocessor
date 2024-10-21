@@ -1,0 +1,342 @@
+set r0 010
+set r1 000
+set r3 010
+set r3 010
+set r4 010
+add r3 r4
+set r1 000
+set r2 000
+set r5 001
+set r4 000
+add r0 r5 
+lw r6 r0 #r6: d11 d10 d9 d8 d7 d6 d5 p8 
+set r5 111
+add r0 r5
+lw r7 r0 #r7: d4 d3 d2 p4 d1 p2 p1 p0
+shift r6 100 #r6: d10 d9 d8 d7 d6 d5 p8 ^p8
+shift r6 001 #sc_o = ^p8
+shift r4 000 #r4: 0000_000^p8 #FIN P8
+set r5 001 
+add r0 r5 
+lw r6 r0
+set r5 111
+add r0 r5
+shift r7 000 #sc_o = d4 #START P4, ^(b11:b8,b4,b3,b2)
+shift r6 001 #r6:  #d4 b11 b10
+shift r7 000 #sc_o = d3
+shift r6 001 #r6: #d3 d4 b11 b10
+shift r7 000 #sc_o = d2
+shift r6 001 #r6: #d2 d3 d4 b11 b10
+shift r7 000 #sc_o = p4
+shift r6 001 #r6: p4 d2 d3 d4 b11 b10 b9 b8 
+shift r6 101 #r6: ^p4 p4 d2 d3 d4 d11 d10 d9 
+shift r6 000 #sc_o = ^p4 
+shift r4 000 #r4: 0000_00^p8 ^p4 #FIN P4
+lw r7 r0
+set r5 001
+add r0 r5
+lw r6 r0 # START P2 
+shift r7 000 #sc_o = d4
+shift r6 001 #r7: d4 d11 d10 d9 ...
+shift r7 000 #sc_o = d3 
+shift r6 001 #r7: d3 d4 d11 d10 d9 d8 d7 d6
+shift r7 010 #remove d2 
+shift r7 010 #remove p4 
+shift r7 000 #sc_o = d1 
+shift r6 001 #r7: d1 d3 d4 d11 d10 d9 d8 d7
+shift r6 001 #r7: d6 d1 d3 d4 d11 d10 d9 d8
+shift r6 001 #r7: d7 d6 d1 d3 d4 d11 d10 d9
+shift r7 000 #sc_o = p2 
+shift r6 001 #r7: p2 d7 d6 d1 d3 d4 d11 d10
+shift r6 100 #r7: d7 d6 d1 d3 d4 d11 d10 ^p2 
+shift r6 001 #r7: 0  d7 d6 d1 d3 d4 d11 d10 
+shift r4 000 #r4: 00000 ^p8 ^p4 ^p2 #FIN P2 
+lw r6 r0 
+set r5 111
+add r0 r5 #r0 curr(i)
+lw r7 r0 # START p1
+set r5 000 #r5 = 0
+shift r6 000 #sc_o = d11
+shift r5 000 #r5 = 0000_000d11
+shift r6 010 #ignore d10 
+shift r6 000 #sc_o d9 
+shift r5 000 #r5 = 0000_00d11d9
+shift r6 010 #ignore d8  
+shift r6 000 #sc_o d7
+shift r5 000 #r5 = 0000_0d11d9d7
+shift r6 010 #ignore d6
+shift r6 000 #sc_o d5
+shift r5 000 #r5 = 0000_d11d9d7d5
+shift r7 000 #sc_o d4 
+shift r5 000 #r5 = 000d11d9d7d5d4 
+shift r7 010 #ignore d3 
+shift r7 000 #sc_o d2
+shift r5 000 #r5 = 00d11d9d7d5d4d2
+shift r7 010 #ignore p4 
+shift r7 000 #sc_o d1 
+shift r5 000 #r5 = 0d11d9d7d5d4d2d1
+shift r7 010 #ignore p2
+shift r7 000 #sc_o p1 
+shift r5 000 #r5 = d11d9d7d5d4d2d1p1
+set r6 000
+shift r5 100 #r5 = d9d7d5d4d2d1p1 ^p1 
+shift r5 001 #sc_o = ^p1 
+shift r4 000 #r4 = 0000 ^p8 ^p4 ^p2 ^ p1, should I calc p0?
+add r2 r3 #r2 now contains outer loop branch(60)
+add r1 r0 #r1 now contains outer loop branch(30+i)
+set r0 000
+add r0 r4 
+set r3 000
+lw r7 r1 
+set r5 001
+add r1 r5 
+lw r6 r1 #reload r6,r7
+set r5 111
+add r1 r5
+set r5 000 #r5 denotes 0,1 or 2 bit error
+branch 111111 #We first check for zero errors #NEWINSTR
+lw r7 r1 # Checks for 2-bit error
+set r5 001
+add r1 r5 
+lw r6 r1 #reload r6,r7
+set r5 000  
+set r3 000
+shift r6 100 
+shift r6 001 
+shift r5 000
+shift r7 100
+shift r7 001
+shift r5 000 #r5: 0000_00 ^m1 ^m2 
+shift r5 100 #r5: 0000_0 ^m1 ^m2 ^m1,m2, #what is r0, r3 at this time?
+shift r5 001 #sc_o = (^m1m2)
+shift r3 000 #r3: 0000_000 ^m1:m2 #r3 = p0(^m1:m2)
+lw r6 r1 
+set r5 111 
+add r1 r5 
+lw r7 r1 
+set r0 000
+set r5 001 
+shift r5 010 
+branch 111111 #2 bit error if p0 != 0 #NEWINSTR
+add r0 r4 
+set r3 001 #now deal with 1 bit error, #CHANGED D1, (Seems like d1-d4 should - 1)
+add r3 r3 #r3 == 2 --> Flip d1
+set r5 001 #use r5 to flip d1 
+shift r5 010 
+shift r5 010 
+shift r5 010 
+lw r7 r1
+xor r7 r5 
+set r5 001 #r5 --> 0000_0001 (denotes 1 bit error) 
+branch 111111 #Jump to ADDR2 if r0(0000_p8p4p2p1) == r3(2)
+set r3 011 #now deal with 1 bit error, #CHANGED D2
+set r5 001 #use r5 to flip d1 
+shift r5 010 
+shift r5 010 
+shift r5 010 
+shift r5 010 
+shift r5 010 
+lw r7 r1 
+xor r7 r5 
+set r5 001 #r5 --> 0000_0001 (denotes 1 bit error) 
+branch 111111 #Jump to ADDR2 if r0(0000_p8p4p2p1) == r3(5) --> ADDR is the address where we fix the message and r5 is the OUTPUT MSW:
+set r3 011 # CHANGED D3
+set r5 001
+add r3 r5 
+lw r7 r1 
+shift r5 010
+shift r5 010
+shift r5 010
+shift r5 010
+shift r5 010
+shift r5 010
+xor r7 r5 
+set r5 001 
+branch 111111 #Jump to ADDR2 if r0(0000_p8p4p2p1) == r3(6) --> ADDR is the address where we fix the message and r5 is the OUTPUT MSW:
+set r3 011 #CHANGED D4
+set r5 001
+add r3 r5 
+add r3 r5
+lw r7 r1 
+shift r5 010
+shift r5 010
+shift r5 010
+shift r5 010
+shift r5 010
+shift r5 010
+shift r5 010
+xor r7 r5 
+set r5 001 
+branch 111111 #Jump to ADDR2 if r0(0000_p8p4p2p1) == r3(7) --> ADDR is the address where we fix the message and r5 is the OUTPUT MSW:
+set r3 011 #D5
+set r5 111
+add r3 r3 
+add r3 r5 #r3 = 9
+lw r7 r1 
+set r5 001 
+add r1 r5 
+lw r6 r1 
+set r5 111
+add r1 r5 
+set r5 001
+shift r5 010
+xor r6 r5 
+set r5 001 
+branch 111111 #Jump to ADDR2 if r0(0000_p8p4p2p1) == r3(9) --> ADDR is the address where we fix the message and r5 is the OUTPUT MSW:
+set r3 011 #D6
+set r5 001
+add r3 r3 #r3 = 10
+add r1 r5
+lw r6 r1 
+set r5 111
+add r1 r5 
+set r5 001
+shift r5 010
+shift r5 010
+xor r6 r5 
+set r5 001 
+branch 111111 #Jump to ADDR2 if r0(0000_p8p4p2p1) == r3(10) --> ADDR is the address where we fix the message and r5 is the OUTPUT MSW:
+set r3 011 #D7
+set r5 001
+add r3 r3 
+add r3 r5 #r3 = 11
+add r1 r5
+lw r6 r1 
+set r5 111
+add r1 r5 
+set r5 001
+shift r5 010
+shift r5 010
+shift r5 010
+xor r6 r5 
+set r5 001 
+branch 111111 #Jump to ADDR2 if r0(0000_p8p4p2p1) == r3(11) --> ADDR is the address where we fix the message and r5 is the OUTPUT MSW:
+set r3 011 #D8
+set r5 001
+add r3 r3 
+add r3 r5 
+add r3 r5 #r3 = 12
+add r1 r5 
+lw r6 r1 
+set r5 111
+add r1 r5 
+set r5 001
+shift r5 010
+shift r5 010
+shift r5 010
+shift r5 010
+xor r6 r5 
+set r5 001 
+branch 111111 #Jump to ADDR2 if r0(0000_p8p4p2p1) == r3(12) --> ADDR is the address where we fix the message and r5 is the OUTPUT MSW:
+set r3 011 #D9
+set r5 001
+add r3 r3 
+add r3 r5 
+add r3 r5 
+add r3 r5 #r3 = 13
+add r1 r5 
+lw r6 r1 
+set r5 111
+add r1 r5 
+set r5 001
+shift r5 010
+shift r5 010
+shift r5 010
+shift r5 010
+shift r5 010
+xor r6 r5 
+set r5 001 
+branch 111111 #Jump to ADDR2 if r0(0000_p8p4p2p1) == r3(13) --> ADDR is the address where we fix the message and r5 is the OUTPUT MSW:
+set r3 011 #D10
+set r5 001
+add r3 r3 
+add r3 r5 
+add r3 r5 
+add r3 r5 
+add r3 r5 #r3 = 14
+add r1 r5 
+lw r6 r1 
+set r5 111
+add r1 r5 
+set r5 001
+shift r5 010
+shift r5 010
+shift r5 010
+shift r5 010
+shift r5 010
+shift r5 010
+xor r6 r5 
+set r5 001 
+branch 111111 #Jump to ADDR2 if r0(0000_p8p4p2p1) == r3(14) --> ADDR is the address where we fix the message and r5 is the OUTPUT MSW:
+set r3 011 #D11
+add r3 r3 
+add r3 r3 
+add r3 r3 #r3 = 15
+set r5 001
+add r1 r5 
+lw r6 r1 
+set r5 111
+add r1 r5 
+set r5 001
+shift r5 010
+shift r5 010
+shift r5 010
+shift r5 010
+shift r5 010
+shift r5 010
+shift r5 010
+xor r6 r5 
+set r5 001 
+branch 111111 #Jump to ADDR2 if r0(0000_p8p4p2p1) == r3(15) --> ADDR is the address where we fix the message and r5 is the OUTPUT MSW:
+add r1 r5 
+lw r6 r1
+set r5 111
+add r1 r5 
+lw r7 r1 #reload r6,r7
+set r5 001
+branch 111110 #If the flipped bit is a parity bit
+set r0 000 #NEWADDR # (ADDR2) --> Start rebuilding msg
+set r3 000
+add r0 r1 
+add r3 r2 
+set r2 110 #r2 is to be added to r0 to go from 30+i --> i 
+add r0 r2 
+set r4 000
+shift r5 010
+shift r5 010
+shift r5 010 #offset of 3 bc, needs to be XX00_0 d11 d10 d9
+shift r6 000 #sc_o = d11
+shift r5 000 #brings in d11
+shift r6 000 #sc_0 = d10
+shift r5 000
+shift r6 000 #sc_o = d9
+shift r5 000
+set r2 001
+add r0 r2 
+sw r5 r0 #this should be the MSW(i+1)
+shift r6 000 #sc_o = b8
+shift r4 000 # 0000_000b8
+shift r6 000 #sc_o = b7 
+shift r4 000 
+shift r6 000 #sc_o = b6 
+shift r4 000
+shift r6 000 #sc_o = b5 
+shift r4 000
+shift r7 000
+shift r4 000
+shift r7 000
+shift r4 000
+shift r7 000
+shift r4 000
+shift r7 010 
+shift r7 000
+shift r4 000 
+set r5 111
+add r0 r5
+sw r4 r0 #This should be LSW(i)
+set r5 010
+add r0 r5 
+set r5 001
+add r0 r5
+add r0 r5
+branch 000010

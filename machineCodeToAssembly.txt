@@ -1,0 +1,197 @@
+//Simple test for bitwise & of 2 bytes
+101000000 //Sets r0 to be 0
+101001001 //Sets r1 to be 'b1
+000010000 //loads r0 into r3
+000011001 //loads r1 into r4
+101000000 //Sets r0 to be 0
+101001001 //Sets r1 to be 1
+101100001 //Sets r4 to be 1
+011100001 //Adds r4 by r1 => r4 = 2
+000010000 //loads r0 into r2
+000011001 //loads r1 into r3
+010011010 //ANDs r3 r2 => r3 = r3 & r2
+001100011 //Stores r3 into r4
+
+//Simple test for branch
+Assembly Version
+//r0 and r3 are our implicit registers
+
+
+//Initialization
+//set r2 to be our adding register(1)
+//set r0, r1, r3 to be 0
+101000000
+101001000
+101010001
+101011000
+//add r3 by r2 until we get r3 = 4
+011011001
+011011001
+011011001
+011011001
+//Start our branching loop, //ADDR = 5
+//add r1 by 1, r1 by r2
+//add r0 by 1
+//bne 000000
+011001010
+011000010
+111000000
+//After branching resolves sw r2 r1
+001010001
+
+//Short version of prog1 testing
+//Need to test 
+//SET OP 
+//LW OP, SW OP
+//SHIFT OPS, shift left,right, (in), (pari bit)
+//BRANCHING OP
+
+//Test LW(000) and SW(001), Works now
+
+//DataMem[1] = 8, DataMem[9] = 3 
+//r1 = 1, r2 = 2
+
+
+000000001 //lw r0 r1 --> Load whatever in r1 to r0 
+001010000 //sw r2 r0 --> Store whatever in r0 to r2
+
+//r0 now contains 8
+//In actuality, what we did is sw r0 r2 --> Store r0 into r2
+
+//datA refers to ... 2(r2)
+//datB refers to ... 8(r0)
+
+//We preload r1 to contain 1 so r0 now contains dataMem[1] which is 8
+//Then we store 8 into dataMem[r2] whic
+h is 2
+//Finally dataMem[2] should == 8
+//TODO: TLDR: lw r0 r1 (same as prev)
+sw is r0 r1 Store r0 into r1
+
+//TEST SET (101): SET WORKS
+101100010 //Sets r4(100) to 010(=30)
+
+//TEST SHIFTING(100)
+
+000 --> Shift Left and Shift In/Out(sc_en)
+001 --> Shift Right and sc_en
+010 --> Shift Left and sc_clr
+011 --> Shift Right and sc_clr
+100 --> Shift Left and Shift in Pari 
+101 --> Shift Right and Shift in Pari
+
+//Set r0-r5: 1
+//Set r6,r7: 30
+101000001
+101001001
+101010111
+101011111
+101100001
+101101001
+101110010
+101111010
+
+//Test shift l,r with clear (WORKS!)
+
+100000010
+100001011
+
+
+
+//Test l,r shift with sc_en (WORKS!)
+
+// Given:
+# 01000001 --> 10000010 --> 00000100 --> 00001001
+# 01000001 --> 00100000 --> 10010000 --> 01001000
+
+Actual:
+
+# 00001001
+# 01001000
+
+100010000
+100010000
+100010000
+100011001
+100011001
+100011001
+
+Expected
+00001001
+01001000
+
+Actual:
+
+# 00001001
+# 01001000
+
+//Test l,r shift with sc_pari(WORKS!)
+
+100110100
+100110100
+100110100
+100110100
+100111101
+100111101
+100111101
+100111101
+
+//Expected:
+
+01100001 --> 11000011 --> 10000110 --> 00001101 --> 00011011
+01100001 --> 11100000 --> 11110000 --> 01111000 --> 00111100
+
+//Update and test branching 
+
+Last bit : 0 → bne
+Last bit : 1 → beq
+
+
+101000000
+101001001
+101010001
+101011011
+101100001
+101101001
+101110001
+101111001
+101111001
+//r0 = 0, r1-r7 = 1, r3 = 5
+//Branching stuff starts here(pc_ctr = 10)
+011001111 //r1 + 1
+011000111 //r0 + 1
+111000010 //Check if r0 != r3(5) 
+
+//BNE AND BEQ WORKS 
+
+101000000
+101001001
+101010001
+101011011
+101100001
+101101001
+101110001
+101111001
+101111001
+101111001
+011001111
+011000111
+111000010
+101000000
+101011000
+011111110
+111100001
+011111110
+011111110
+011111110
+
+//Actual: 
+
+# r0 contains
+# 00000000
+# r1 contains
+# 00000110
+# r3 contains
+# 00000000
+# r7 contains
+# 00000011

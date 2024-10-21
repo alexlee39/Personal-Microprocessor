@@ -1,0 +1,138 @@
+set r0 000 #Set r0 = 0 
+set r1 010 #Set r3 = 30(to increment)
+set r3 010 #Set r3 = 30(to keep track of branching)
+set r3 010 #Set r3 = 30(to keep track of branching)
+set r3 010 #Set r3 = 30(to keep track of branching)
+set r3 010 #Set r3 = 30(to keep track of branching)
+set r4 000 #Set r4 = 0
+set r5 001 #set r5 = 1
+lw r6 r0 #b8 b7 b6 b5 b4 b3 b2 b1
+add r0 r5 #add r0 by 1 
+lw r7 r0 #0 0 0 0 0 b11 b10 b9 #START P8
+shift r6 000 #Shift r6 to left, r6: b7 b6 ...
+shift r7 000 #Shift r7 to left  r7: 0 0 0 0 b11 b10 b9 b8
+shift r6 000 #Shift r6 to left b7
+shift r7 000 #Shift r7 to left b7
+shift r6 000 #Shift r6 to left b6 
+shift r7 000 #Shift r7 to left b6
+shift r6 000 #Shift r6 to left b5
+shift r7 000 #Shift r7 to left b5
+shift r7 100 #Shift r7 to the left, w/ parity of prev r7 (p8)
+shift r7 001 #Shift r7 to the right, sc_o = p8
+shift r4 000 #Shift r4 bringing in parity of p8(that must be always_ff, clock cycle update.)
+shift r7 100 #Shift r7 to the left, w/ parity of prev r7 
+add r1 r5 #add r1 by 1 → 30 + i + 1
+sw r7 r1
+set r5 111 
+add r1 r5 #reduce r1 to be [30+i]
+lw r7 r0
+add r0 r5 #Subtract r0 by 1
+lw r6 r0
+set r5 001 
+add r0 r5 #Add r0 by 1, back to default i+1, #START P4
+shift r6 000 #Shift r6 to left
+shift r7 000 #Shift r6 to left, (Brings in d8)
+shift r6 010 #Shift r6 to left
+shift r6 010 #Shift r6 to left
+shift r6 010 #Shift r6 to left
+shift r6 000 #Shift r6 to left
+shift r7 000 #Shift r7 to left, (Brings in d4)
+shift r6 000 #Shift r6 to left
+shift r7 000 #Shift r7 to left, (Brings in d3)
+shift r6 000 #Shift r6 to left
+shift r7 000 #Shift r7 to left, (Brings in d2)
+shift r7 100 #Shift in parity bit
+shift r7 001 #Shift out(right) the parity bit
+shift r4 000 #Shift r4 bringing in parity of p4(that must be always_ff, clock cycle update.)
+lw r7 r0
+set r5 111 
+add r0 r5 #Subtract r0 by 1
+lw r6 r0
+set r5 001 #set r5 = 1
+add r0 r5 #Add r0 by 1, back to default i+1 #START P2
+shift r7 011 #Shift r7 right, shift out d9, bringing in nothing
+shift r6 010 # shift r6 left, shift out d8
+shift r6 000 #shift r6 left, shift out d7
+shift r7 000 #shift r7 left, bring in d7
+shift r6 000 #shift r6 left, shift out d6
+shift r7 000 #shift r7 left, bring in d6
+shift r6 010 #shift r6 left, shift out d5
+shift r6 000 #shift r6 left, shift out d4
+shift r7 000 #shift r7 left, bring in d4
+shift r6 000 #shift r6 left, shift out d3
+shift r7 000 #shift r7 left, bring in d3
+shift r6 010 #shift r6 left, shift out d2
+shift r6 000 #shift r6 left, shift out d1
+shift r7 000 #shift r7 left, bring in d1
+shift r7 100 #Shift in parity bit
+shift r7 001 #Shift out(right) the parity bit
+shift r4 000 #Shift r4 bringing in parity of p2(that must be always_ff, clock cycle update.)
+lw r7 r0 #START P1
+set r5 111 
+add r0 r5 #Subtract r0 by 1
+lw r6 r0
+set r5 001 #set r5 = 1
+add r0 r5 #Add r0 by 1, back to default i+1
+set r2 011 #r2: 0000_0101
+and r7 r2 #r7 00000d11 0 d9
+shift r6 000 #Left shift r6, leave out d8
+shift r6 000 #Left shift r6, store d7 in shift in reg
+shift r7 000 #Left shift r7, bring in d7
+shift r6 000 #Left shift r6
+shift r6 000 #Left shift r6
+shift r7 000 #left shift r7, bring in d5
+shift r6 000 #Left shift r6
+shift r7 000 #left shift r7, bring in d4
+shift r6 000 #Left shift r6, leave out d3
+shift r6 000 #Left shift r6
+shift r7 000 #left shift r7, bring in d2
+shift r6 000 #Left shift r6
+shift r7 000 #left shift r7, bring in d1
+shift r7 100 #Shift in parity bit
+shift r7 001 #Shift out(right) the parity bit
+shift r4 000 #Shift r4 bringing in parity of p1(that must be always_ff, clock cycle update.)
+lw r7 r0 
+set r5 111 
+add r0 r5 #Subtract r0 by 1
+lw r6 r0
+set r5 001 #set r5 = 1
+add r0 r5 #Add r0 by 1, back to default i+1
+set r2 000
+add r2 r4 #START P0,#p0: ^(b11:1,p8,p4,p2,p1)
+shift r7 100 
+shift r7 001
+shift r4 000
+shift r6 100
+shift r6 001
+shift r4 000
+shift r4 100
+shift r4 001
+shift r2 000
+lw r7 r0 #Loading Message2
+set r5 111 
+add r0 r5 #Subtract r0 by 1
+lw r6 r0
+set r5 001 #set r5 = 1
+add r0 r5 #Add r0 by 1, back to default i+1
+shift r6 001 #shift out b1
+shift r7 000 #r7: 0000 b11 b10 b9 b1
+shift r2 000 #shift out 0s - p8
+shift r2 000
+shift r2 000
+shift r2 000
+shift r2 000 #r2 :p2 p1 p0 00000 (shift out p4)
+shift r6 000 #r6: X b7 b6 b5 b4 b3 b2 p4
+shift r7 001 #r7: (shift out b1)
+shift r6 000 #r6:  b7 b6 b5 b4 b3 b2 p4 b1
+shift r2 000
+shift r6 000
+shift r2 000
+shift r6 000
+shift r2 000
+shift r6 000
+sw r6 r1
+set r4 001
+add r0 r4
+add r1 r4
+add r1 r4
+branch 000010

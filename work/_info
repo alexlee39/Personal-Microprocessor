@@ -1,0 +1,399 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/alexa/OneDrive/Desktop/CSE/CSE140L/Lab5/Part2
+valu
+Z0 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
+Z1 !s110 1702777621
+!i10b 1
+!s100 aO75E<_z@]b3K2EohQGib0
+I`?mTE@g<AL;DAh<4EmO=W1
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+!s105 alu_sv_unit
+S1
+Z3 dD:/UCSD-Work/CSE/CSE141L/hardware
+w1702682515
+8D:/UCSD-Work/CSE/CSE141L/hardware/alu.sv
+FD:/UCSD-Work/CSE/CSE141L/hardware/alu.sv
+L0 3
+Z4 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z5 !s108 1702777621.000000
+!s107 D:/UCSD-Work/CSE/CSE141L/hardware/alu.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:/UCSD-Work/CSE/CSE141L/hardware/alu.sv|
+!i113 1
+Z6 o-work work -sv
+Z7 tCvgOpt 0
+vControl
+R0
+R1
+!i10b 1
+!s100 ha^GRZ?_XoPl^9HdT9;U_3
+IJ52l?m_4X?m>i5WA:LN6_3
+R2
+!s105 Control_sv_unit
+S1
+R3
+w1702528723
+8D:/UCSD-Work/CSE/CSE141L/hardware/Control.sv
+FD:/UCSD-Work/CSE/CSE141L/hardware/Control.sv
+L0 2
+R4
+r1
+!s85 0
+31
+R5
+!s107 D:/UCSD-Work/CSE/CSE141L/hardware/Control.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:/UCSD-Work/CSE/CSE141L/hardware/Control.sv|
+!i113 1
+R6
+R7
+n@control
+vdat_mem
+R0
+R1
+!i10b 1
+!s100 bn@ENnkP=3MOZHALHODEn1
+IGb95]g_z4O]5L2U40;2@D0
+R2
+!s105 dat_mem_sv_unit
+S1
+R3
+w1702532331
+8D:/UCSD-Work/CSE/CSE141L/hardware/dat_mem.sv
+FD:/UCSD-Work/CSE/CSE141L/hardware/dat_mem.sv
+L0 2
+R4
+r1
+!s85 0
+31
+R5
+!s107 D:/UCSD-Work/CSE/CSE141L/hardware/dat_mem.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:/UCSD-Work/CSE/CSE141L/hardware/dat_mem.sv|
+!i113 1
+R6
+R7
+vinstr_ROM
+R0
+R1
+!i10b 1
+!s100 jkzD68]`^_e5[c2bEWmXK2
+I;>8A2WFYlkSZ:H_HcNo5e1
+R2
+!s105 instr_ROM_sv_unit
+S1
+R3
+w1702777587
+8D:/UCSD-Work/CSE/CSE141L/hardware/instr_ROM.sv
+FD:/UCSD-Work/CSE/CSE141L/hardware/instr_ROM.sv
+L0 4
+R4
+r1
+!s85 0
+31
+R5
+!s107 D:/UCSD-Work/CSE/CSE141L/hardware/instr_ROM.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:/UCSD-Work/CSE/CSE141L/hardware/instr_ROM.sv|
+!i113 1
+R6
+R7
+ninstr_@r@o@m
+vmilestone2_quicktest_tb
+R0
+!s110 1701281967
+!i10b 1
+!s100 GXFRNkN>>o_f3H4j`m[V80
+IMno?>QNWUTdjMLDCB;doQ0
+R2
+!s105 milestone2_quicktest_tb_sv_unit
+S1
+Z8 dC:/Users/alexa/OneDrive/Desktop/CSE/CSE141L/hardware
+w1701281960
+8C:/Users/alexa/OneDrive/Desktop/CSE/CSE141L/hardware/milestone2_quicktest_tb.sv
+FC:/Users/alexa/OneDrive/Desktop/CSE/CSE141L/hardware/milestone2_quicktest_tb.sv
+L0 1
+R4
+r1
+!s85 0
+31
+!s108 1701281967.000000
+!s107 C:/Users/alexa/OneDrive/Desktop/CSE/CSE141L/hardware/milestone2_quicktest_tb.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/alexa/OneDrive/Desktop/CSE/CSE141L/hardware/milestone2_quicktest_tb.sv|
+!i113 1
+R6
+R7
+vPC
+R0
+R1
+!i10b 1
+!s100 9SR=WQL4N@EK3WLSnM`A43
+IeY`2?VnJIl]TD^8B9Ej0D1
+R2
+!s105 PC_sv_unit
+S1
+R3
+w1702442039
+8D:/UCSD-Work/CSE/CSE141L/hardware/PC.sv
+FD:/UCSD-Work/CSE/CSE141L/hardware/PC.sv
+L0 4
+R4
+r1
+!s85 0
+31
+R5
+!s107 D:/UCSD-Work/CSE/CSE141L/hardware/PC.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:/UCSD-Work/CSE/CSE141L/hardware/PC.sv|
+!i113 1
+R6
+R7
+n@p@c
+vPC_LUT
+R0
+R1
+!i10b 1
+!s100 B2V[[oMUaY;6h>3KOoa_A0
+InX9bB=?5`[j;5ETQn38>I0
+R2
+!s105 PC_LUT_sv_unit
+S1
+R3
+w1702775605
+8D:/UCSD-Work/CSE/CSE141L/hardware/PC_LUT.sv
+FD:/UCSD-Work/CSE/CSE141L/hardware/PC_LUT.sv
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+!s107 D:/UCSD-Work/CSE/CSE141L/hardware/PC_LUT.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:/UCSD-Work/CSE/CSE141L/hardware/PC_LUT.sv|
+!i113 1
+R6
+R7
+n@p@c_@l@u@t
+vprog1_tb
+R0
+R1
+!i10b 1
+!s100 9P=gbD]EQmnmglIabBjC13
+I9b@V]VF1L<mSEoXlO:4ED2
+R2
+!s105 prog1_tb_sv_unit
+S1
+R3
+w1702775882
+8D:/UCSD-Work/CSE/CSE141L/hardware/prog1_tb.sv
+FD:/UCSD-Work/CSE/CSE141L/hardware/prog1_tb.sv
+Z9 L0 10
+R4
+r1
+!s85 0
+31
+R5
+!s107 D:/UCSD-Work/CSE/CSE141L/hardware/prog1_tb.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:/UCSD-Work/CSE/CSE141L/hardware/prog1_tb.sv|
+!i113 1
+R6
+R7
+vprog1test_tb
+R0
+!s110 1702668166
+!i10b 1
+!s100 O<VUh19Q;d;HO>@H0jk_a1
+IbTOK;k[7;z3N^BzZTmm6>1
+R2
+!s105 prog1test_tb_sv_unit
+S1
+R3
+w1702597955
+8D:/UCSD-Work/CSE/CSE141L/hardware/prog1test_tb.sv
+FD:/UCSD-Work/CSE/CSE141L/hardware/prog1test_tb.sv
+L0 1
+R4
+r1
+!s85 0
+31
+!s108 1702668166.000000
+!s107 D:/UCSD-Work/CSE/CSE141L/hardware/prog1test_tb.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:/UCSD-Work/CSE/CSE141L/hardware/prog1test_tb.sv|
+!i113 1
+R6
+R7
+vprog2_tb
+R0
+!s110 1702776121
+!i10b 1
+!s100 QDnf[icEgB]mB0R]dz^@o2
+I;9>N]AMZg3<fY?Rn8S6?33
+R2
+!s105 prog2_tb_sv_unit
+S1
+R3
+w1702743505
+8D:/UCSD-Work/CSE/CSE141L/hardware/prog2_tb.sv
+FD:/UCSD-Work/CSE/CSE141L/hardware/prog2_tb.sv
+R9
+R4
+r1
+!s85 0
+31
+!s108 1702776121.000000
+!s107 D:/UCSD-Work/CSE/CSE141L/hardware/prog2_tb.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:/UCSD-Work/CSE/CSE141L/hardware/prog2_tb.sv|
+!i113 1
+R6
+R7
+vprog3_tb
+R0
+Z10 !s110 1702776274
+!i10b 1
+!s100 ESF`GQ;0P:>RQa6VTJ6^f1
+I8_B^215@X:oXnIiO275BS0
+R2
+!s105 prog3_tb_sv_unit
+S1
+R3
+w1702776269
+8D:/UCSD-Work/CSE/CSE141L/hardware/prog3_tb.sv
+FD:/UCSD-Work/CSE/CSE141L/hardware/prog3_tb.sv
+L0 3
+R4
+r1
+!s85 0
+31
+Z11 !s108 1702776274.000000
+!s107 D:/UCSD-Work/CSE/CSE141L/hardware/prog3_tb.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:/UCSD-Work/CSE/CSE141L/hardware/prog3_tb.sv|
+!i113 1
+R6
+R7
+vreg_file
+R0
+R1
+!i10b 1
+!s100 _jj4@JPC4X?=FMJJh_PDM2
+I`XWHe?8ZD176?S0Q^ECjK3
+R2
+!s105 reg_file_sv_unit
+S1
+R3
+w1702534112
+8D:/UCSD-Work/CSE/CSE141L/hardware/reg_file.sv
+FD:/UCSD-Work/CSE/CSE141L/hardware/reg_file.sv
+L0 3
+R4
+r1
+!s85 0
+31
+R5
+!s107 D:/UCSD-Work/CSE/CSE141L/hardware/reg_file.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:/UCSD-Work/CSE/CSE141L/hardware/reg_file.sv|
+!i113 1
+R6
+R7
+vSET_IMM
+R0
+!s110 1701043417
+!i10b 1
+!s100 FM;NDa<OnEmdU5X>dVBTQ3
+I2dB>45Q?[BUkg?J@]_dYJ2
+R2
+Z12 !s105 set_imm_sv_unit
+S1
+R8
+w1701043294
+8C:/Users/alexa/OneDrive/Desktop/CSE/CSE141L/hardware/set_imm.sv
+FC:/Users/alexa/OneDrive/Desktop/CSE/CSE141L/hardware/set_imm.sv
+L0 1
+R4
+r1
+!s85 0
+31
+!s108 1701043416.000000
+!s107 C:/Users/alexa/OneDrive/Desktop/CSE/CSE141L/hardware/set_imm.sv|
+!s90 -reportprogress|300|-work|work|-sv|C:/Users/alexa/OneDrive/Desktop/CSE/CSE141L/hardware/set_imm.sv|
+!i113 1
+R6
+R7
+n@s@e@t_@i@m@m
+vset_imm
+R0
+R1
+!i10b 1
+!s100 lj>_M1eUi=^P:G>RnBigo1
+IkbziAm:H@m2OfRdBI_TeE1
+R2
+R12
+S1
+R3
+w1702754071
+8D:/UCSD-Work/CSE/CSE141L/hardware/set_imm.sv
+FD:/UCSD-Work/CSE/CSE141L/hardware/set_imm.sv
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+!s107 D:/UCSD-Work/CSE/CSE141L/hardware/set_imm.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:/UCSD-Work/CSE/CSE141L/hardware/set_imm.sv|
+!i113 1
+R6
+R7
+vshift_imm
+R0
+R1
+!i10b 1
+!s100 ZbQ>nQ79VSzJGDKCHojmk1
+I:eNS;QlKNaCR0CoMAzA;n1
+R2
+!s105 shift_imm_sv_unit
+S1
+R3
+w1701043307
+8D:/UCSD-Work/CSE/CSE141L/hardware/shift_imm.sv
+FD:/UCSD-Work/CSE/CSE141L/hardware/shift_imm.sv
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+!s107 D:/UCSD-Work/CSE/CSE141L/hardware/shift_imm.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:/UCSD-Work/CSE/CSE141L/hardware/shift_imm.sv|
+!i113 1
+R6
+R7
+vtop_level
+R0
+R10
+!i10b 1
+!s100 hQVJj[4JUM];:ToBJH?j=3
+IOPH6NkZ[1M2:jgWaS4Q<z3
+R2
+!s105 top_level_sv_unit
+S1
+R3
+w1702713325
+8D:/UCSD-Work/CSE/CSE141L/hardware/top_level.sv
+FD:/UCSD-Work/CSE/CSE141L/hardware/top_level.sv
+L0 2
+R4
+r1
+!s85 0
+31
+R11
+!s107 D:/UCSD-Work/CSE/CSE141L/hardware/top_level.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:/UCSD-Work/CSE/CSE141L/hardware/top_level.sv|
+!i113 1
+R6
+R7

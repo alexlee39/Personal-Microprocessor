@@ -1,0 +1,342 @@
+set r0 000
+set r1 001
+set r3 010
+add r3 r1 
+add r3 r1 #r3 = 32
+set r4 000 #Skip this
+set r5 001 #START HERE(ADDR: 00001)
+set r6 000
+add r6 r3
+add r6 r5 # r6 = 32
+lw r6 r6 #r6 = Waldo 
+set r1 000
+set r2 000
+add r1 r0 
+add r2 r3 #save r0 - r1, r3 - r2 
+set r0 000 #r0 = 0
+set r3 000 #r3 = xor of currByte(r3) and Waldo(r6) 
+lw r3 r1 
+xor r3 r6 
+set r5 100
+and r3 r5 
+set r5 001
+branch 000110 #Skip adding r4 if bytes not Equal 
+add r4 r5 
+set r3 000 # 00011-ADDR 
+add r3 r2 
+add r0 r1 
+add r0 r5 
+branch 000010
+set r5 001
+add r5 r5 
+add r5 r3 #r5 = 1+ 1+ 32 = 34
+sw r4 r5 
+set r0 000 #BYTES WITHOUT BOUNDARIES
+set r1 001
+set r3 010
+add r3 r1 
+add r3 r1 #r3 = 32
+set r4 000 
+set r6 000 #branch TODO_OUTER 
+add r6 r3 #r6 = 32
+lw r6 r6 #r6 = Waldo 
+set r1 000
+set r2 000
+add r1 r0 
+add r2 r3 #save r0 - r1, r3 - r2 
+set r0 000 #r0 = 0(compare with XOR)
+set r3 000 #r3 = xor of currByte(r3) and Waldo(r6)
+lw r3 r1
+xor r3 r6 
+set r5 100
+and r3 r5 
+set r5 001
+branch 001100 #Skip adding r4 if bytes not Equal, TODO1 
+add r4 r5 
+set r6 000 # TODO1-ADDR 
+add r6 r2 #r6 = 32
+lw r6 r6 #r6 = Waldo 
+shift r6 011 #REWRITE: set r1 000 set r2 000 add r1 r0 add r2 r3 #save r0 - r1, r3 - r2 
+set r0 000 #r0 = 0(compare with XOR)
+set r3 000 #r3 = xor of currByte(r3) and Waldo(r6)
+lw r3 r1
+xor r3 r6 
+set r5 100
+shift r5 011
+and r3 r5 
+set r5 001
+branch 001110 #Skip adding r4 if bytes not Equal #TODO2
+add r4 r5 
+set r6 000 # TODO2-ADDR 
+add r6 r2 #r6 = 32
+lw r6 r6 #r6 = Waldo 
+shift r6 011
+shift r6 011 
+set r0 000 #r0 = 0(compare with XOR)
+set r3 000 #r3 = xor of currByte(r3) and Waldo(r6)
+lw r3 r1 
+xor r3 r6 
+set r5 100
+shift r5 011
+shift r5 011
+and r3 r5 
+set r5 001
+branch 010000 #Skip adding r4 if bytes not Equal 
+add r4 r5 
+set r6 000 # TODO3-ADDR 
+add r6 r2 #r6 = 32
+lw r6 r6 #r6 = Waldo 
+shift r6 011
+shift r6 011
+shift r6 011
+set r0 000 #r0 = 0(compare with XOR)
+set r3 000 #r3 = xor of currByte(r3) and Waldo(r6)
+lw r3 r1 
+xor r3 r6 
+set r5 100
+shift r5 011
+shift r5 011
+shift r5 011
+and r3 r5 
+set r5 001
+branch 010010 #Skip adding r4 if bytes not Equal #TODO4
+add r4 r5 
+set r3 000 #END OF OUTER IF/ELSE (For Loop Stuff) #TODO4
+set r5 001
+set r3 000
+add r3 r2 
+add r0 r1 
+add r0 r5 #resets r0
+branch 001010 #branch to outer if stuff aint correct 
+set r5 001 
+add r5 r3 
+sw r4 r5
+set r0 000 #BYTES WITH BOUNDARIES, #r0(i)
+set r1 001 #r1 = 0 
+set r3 010 
+add r3 r1 #r3 = 31
+set r4 000 
+set r6 000 #branch NEWTODO_OUTER 
+set r5 001
+add r6 r3 
+add r6 r5 #r6 = 32
+lw r6 r6 #r6 = Waldo 
+set r1 000 
+set r2 000
+add r1 r0 
+add r2 r3 #save r1 contains currByte(i), r2 contains endByte(31)
+set r0 000 #r0 = 0(compare with XOR)
+set r3 000 #r3 = xor of currByte(r3) and Waldo(r6)
+lw r3 r1
+xor r3 r6 
+set r7 100 #r7 used to 0 out other bits in the current byte besides from Waldo
+and r3 r7 #check first in place Waldo(XXXX_X000)
+set r5 001
+branch 010110 #Skip adding r4 if bytes not Equal, NEWTODO1
+add r4 r5 
+shift r6 011 #Shift Waldo Right once, bringing in 0’s (0XXX_XX00)
+lw r3 r1 (r1= currByte)
+xor r3 r6 
+set r5 100
+shift r7 011 #Shift offset  Byte Right once,
+and r3 r7 #check shifted once Waldo(0XXX_XX00)
+set r5 001
+branch 011000 #Skip adding r4 if bytes not Equal #NEWTODO2
+add r4 r5 
+shift r6 011 #Shift Waldo Right once, bringing in 0’s (00XX_XXX0)
+lw r3 r1 
+xor r3 r6 
+shift r7 011
+and r3 r7 
+branch 101100 #Skip adding r4 if bytes not Equal 
+add r4 r5 
+shift r6 011
+lw r3 r1 
+xor r3 r6 
+shift r7 011
+and r3 r7 
+branch 011010 #Skip adding r4 if bytes not Equal #NEWTODO4
+add r4 r5 
+set r6 000 #CROSSING BOUNDARIES #TODO5
+set r7 000
+add r6 r2 
+add r6 r5 #r6 = 32
+lw r6 r6 #r6 = Waldo, Have Waldo shifted all the way to the right...
+shift r6 011
+shift r6 011
+shift r6 011
+set r0 000 #r0 = 0(compare with XOR)
+set r3 000 #r3 = xor of currByte(r3) and Waldo(r6)
+lw r3 r1 #r3: currByte(r3)
+set r5 001
+add r5 r1  
+lw r7 r5 #r7 now contains next Byte 
+shift r7 000 #sc_o nextByte 
+shift r3 000 #bring in nextByte's bit 
+xor r3 r6 
+set r5 100
+shift r5 011
+shift r5 011
+shift r5 011
+and r3 r5 
+set r5 001
+branch 011110 #Skip adding r4 if bytes not Equal #NEWTODO6
+add r4 r5 
+set r6 001 #CROSSING BOUNDARIES #NEWTODO6 
+set r7 001
+add r6 r2 #r6 = 32
+lw r6 r6 #r6 = Waldo, Have Waldo shifted all the way to the right...
+shift r6 011
+shift r6 011
+shift r6 011
+set r0 000 #r0 = 0(compare with XOR)
+set r3 000 #r3 = xor of currByte(r3) and Waldo(r6)
+set r5 001 #r7 = nextByte(r7) of currByte(r3)
+lw r3 r1
+add r5 r1 #r5 = next-byte
+lw r7 r5
+shift r7 000 #sc_o nextByte 
+shift r3 000 #bring in nextByte's bit 
+shift r7 000 #sc_o nextByte 
+shift r3 000 #bring in nextByte's bit 
+xor r3 r6 
+set r5 100
+shift r5 011
+shift r5 011
+shift r5 011
+and r3 r5 
+set r5 001
+branch 100000 #Skip adding r4 if bytes not Equal #NEWTODO7
+add r4 r5 
+set r6 001 #CROSSING BOUNDARIES #NEWTODO7
+set r7 001
+add r6 r2 #r6 = 32
+lw r6 r6 #r6 = Waldo, Have Waldo shifted all the way to the right...
+shift r6 011
+shift r6 011
+shift r6 011
+set r0 000 #r0 = 0(compare with XOR)
+set r3 000 #r3 = xor of currByte(r3) and Waldo(r6)
+set r5 001 
+add r5 r1 
+lw r7 r5 
+lw r3 r1
+shift r7 000 #sc_o nextByte 
+shift r3 000 #bring in nextByte's bit 
+shift r7 000 #sc_o nextByte 
+shift r3 000 #bring in nextByte's bit 
+shift r7 000 #sc_o nextByte 
+shift r3 000 #bring in nextByte's bit 
+xor r3 r6 
+set r5 100
+shift r5 011
+shift r5 011
+shift r5 011
+and r3 r5 
+set r5 001
+branch 100010 #Skip adding r4 if bytes not Equal #TODO8
+add r4 r5 
+set r6 001 #CROSSING BOUNDARIES #TODO8
+set r7 001
+add r6 r2 #r6 = 32
+lw r6 r6 #r6 = Waldo, Have Waldo shifted all the way to the right...
+shift r6 011
+shift r6 011
+shift r6 011
+set r0 000 #r0 = 0(compare with XOR)
+set r3 000 #r3 = xor of currByte(r3) and Waldo(r6)
+set r5 001 
+add r5 r1 
+lw r7 r5 
+lw r3 r1
+shift r7 000 #sc_o nextByte 
+shift r3 000 #bring in nextByte's bit 
+shift r7 000 #sc_o nextByte 
+shift r3 000 #bring in nextByte's bit 
+shift r7 000 #sc_o nextByte 
+shift r3 000 #bring in nextByte's bit 
+shift r7 000 #sc_o nextByte 
+shift r3 000 #bring in nextByte's bit 
+xor r3 r6 
+set r5 100
+shift r5 011
+shift r5 011
+shift r5 011
+and r3 r5 
+set r5 001
+branch 100100 #Skip adding r4 if bytes not Equal #TODO9
+add r4 r5 
+set r3 000 #END OF OUTER IF/ELSE (For Loop Stuff) #TODO9
+add r0 r1
+add r3 r2 #reload r0,r3
+add r0 r5 #increment r0→ (i+1)
+branch 010100 #branch to outer if i != 31 , 0-30
+set r2 000
+add r2 r3 #r2 = 31 
+set r6 001 #Now we check for the 31st byte
+set r5 001
+add r6 r3 #r6 = 32
+lw r6 r6 #r6 = Waldo
+set r0 000 #r0 = 0(compare with XOR)
+lw r3 r2 #r3 contains the byte [31]
+xor r3 r6 
+set r5 100 #add offset
+and r3 r5 #get rid of extra 3-bits
+set r5 001
+branch 110000 #Skip adding r4 if bytes not Equal, TODO10
+add r4 r5 
+set r6 000 # TODO10-ADDR 
+add r6 r3 #r6 = 32
+lw r6 r6 #r6 = Waldo 
+shift r6 011
+set r0 000 #r0 = 0(compare with XOR)
+set r3 000 #r3 = xor of currByte(r3) and Waldo(r6)
+lw r3 r2 
+xor r3 r6 
+set r5 100
+shift r5 011
+and r3 r5 #Check for Waldo off by 1 bit
+set r5 001
+branch 100110 #Skip adding r4 if bytes not Equal #TODO11
+add r4 r5 
+set r6 001 # TODO11-ADDR 
+add r6 r2 
+lw r6 r6 #r6 = Waldo 
+shift r6 011
+shift r6 011
+set r0 000 #r0 = 0(compare with XOR)
+set r3 000 #r3 = xor of currByte(r3) and Waldo(r6)
+lw r3 r2 
+xor r3 r6 
+set r5 100
+shift r5 011
+shift r5 011
+and r3 r5 #Check for Waldo off by 2 bit(to the left)
+set r5 001
+branch 101000 #Skip adding r4 if bytes not Equal #TODO12
+add r4 r5 
+set r6 001 # TODO12-ADDR 
+add r6 r2 
+lw r6 r6 #r6 = Waldo 
+shift r6 011
+shift r6 011
+shift r6 011
+set r0 000 #r0 = 0(compare with XOR)
+set r3 000 #r3 = xor of currByte(r3) and Waldo(r6)
+lw r3 r2 
+xor r3 r6 
+set r5 100
+shift r5 011
+shift r5 011
+shift r5 011
+and r3 r5 #Check for Waldo off by 3 bits(to the left)
+set r5 001
+branch 101010 #Skip adding r4 if bytes not Equal #TODOEND
+add r4 r5 
+set r5 001 #TODOEND
+add r5 r5 #r5 = 2
+set r7 001 
+add r5 r7 #r5 = 3 
+add r5 r7 #r5 = 4
+add r5 r2 #r5 = 31+4 = 35
+sw r4 r5
